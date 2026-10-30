@@ -1,0 +1,42 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Fri Oct 16 12:31:32 2026
+
+@author: kevin
+"""
+
+
+import cv2 as cv
+import numpy as np
+img = cv.imread('/Users/kevin/Desktop/soccer.jpg')
+img_show = np.copy(img)
+
+mask = np.zeros((img.shape[0], img.shape[1]), np.uint8)
+mask[:, :] = cv.GC_PR_BGD
+
+BrushSize = 9
+LColor, RColor = (255, 0, 0), (0, 0, 255)
+
+def painting(event, x, y, flags, param):
+    if event == cv.EVENT_LBUTTONDOWN:
+        cv.circle(img_show, (x, y), BrushSize, LColor, -1)
+        cv.circle(mask, (x, y), BrushSize, cv.GC_FGD, -1)
+
+    elif event == cv.EVENT_RBUTTONDOWN:
+        cv.circle(img_show, (x, y), BrushSize, RColor, -1)
+        cv.circle(mask, (x, y), BrushSize, cv.GC_BGD, -1)
+
+    elif event == cv.EVENT_MOUSEMOVE and flags == cv.EVENT_FLAG_LBUTTON:
+        cv.circle(img_show, (x, y), BrushSize, LColor, -1)
+        cv.circle(mask, (x, y), BrushSize, cv.GC_FGD, -1)
+
+    elif event == cv.EVENT_MOUSEMOVE and flags == cv.EVENT_FLAG_RBUTTON:
+        cv.circle(img_show, (x, y), BrushSize, RColor, -1)
+        cv.circle(mask, (x, y), BrushSize, cv.GC_BGD, -1)
+
+cv.imshow('Painting', img_show)
+cv.setMouseCallback('Painting', painting)
+
+cv.waitKey(0)
+cv.destroyAllWindows()
