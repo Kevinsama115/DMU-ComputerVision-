@@ -1,0 +1,13 @@
+.DS_Store
+.spyproject/
+**/.DS_Store
+midterm/config/
+midterm/*.sqlite
+midterm/spyder.lock
+midterm/history.py
+midterm/history_internal.py
+midterm/user-env.sh
+midterm/workingdir
+midterm/langconfig
+midterm/onlinehelp
+midterm/help
