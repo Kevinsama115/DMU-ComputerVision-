@@ -1,0 +1,10 @@
+# Mac system files
+.DS_Store
+
+# Spyder temporary files
+.spyderproject/
+.spyproject/
+spyder.lock
+
+# Large local image dataset
+Images/
